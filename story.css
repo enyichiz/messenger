@@ -1,0 +1,224 @@
+/* story.css */
+
+/* Story Viewer Overlay */
+#storyViewerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    user-select: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#storyViewerOverlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Global tap highlight removal for all elements in the story viewer */
+#storyViewerOverlay * {
+    -webkit-tap-highlight-color: transparent !important;
+    -moz-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+#storyViewerOverlay *:active {
+    outline: none !important;
+}
+
+/* Story container */
+.storycon {
+    max-height: calc(100vh - 80px); /* Adjusted for Opera Mini and other mobile toolbars */
+    background: #242323;
+    max-width: 384px;
+    width: 95%;
+    position: relative;
+    top: -38px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Gradient overlay for story image */
+.story-gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.15) 50%, transparent 100%); /* Slightly more visible */
+    z-index: 1; /* Above story-blur-bg (0), below story-viewer-content (1) and progress bars (2) */
+    pointer-events: none; /* Allow clicks to pass through to image/navigation */
+}
+
+/* Progress Bars */
+.story-progress-bars {
+    position: absolute;
+    top: 2px; /* 2px gap from top of storycon */
+    left: 8px;
+    right: 8px; /* Aligns with storycon's border-radius */
+    display: flex;
+    gap: 4px;
+    z-index: 2;
+}
+
+.progress-bar-container {
+    flex: 1;
+    height: 2px; /* Smaller progress bar */
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #ffffff;
+    width: 0;
+}
+
+.progress-bar.completed {
+    width: 100%;
+}
+
+.progress-bar.active {
+    animation: progress 5000ms linear forwards; /* Matches STORY_DURATION */
+}
+
+@keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Navigation Areas */
+.story-nav-area {
+    position: absolute;
+    top: 0;
+    width: 40%;
+    height: calc(100% - 77px); /* Exclude bottom 77px to avoid overlapping reply container */
+    z-index: 3; /* Lower than story-reply-container */
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    user-select: none;
+    outline: none;
+}
+
+.story-nav-prev {
+    left: 0;
+}
+
+.story-nav-next {
+    right: 0;
+}
+
+.story-nav-area:active {
+    outline: none;
+}
+
+/* Blurred background for medium/short images */
+.story-blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(30px) brightness(0.6);
+    z-index: 0;
+    border-radius: 8px;
+}
+
+/* Story image */
+.storycon img.story-viewer-content {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.1s ease-out;
+    position: relative;
+    z-index: 1; /* Same as before, above story-gradient-overlay */
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* Reply container */
+.story-reply-container {
+    position: absolute;
+    bottom: 16px;
+    width: 95%; /* Match storycon width */
+    max-width: 384px; /* Match storycon max-width */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    z-index: 4; /* Higher than story-nav-area to ensure clickability */
+}
+
+/* Reply bar */
+.story-reply {
+    flex: 1;
+    background-color: #1f1f1f;
+    border-radius: 9999px;
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #9ca3af;
+    text-align: left;
+    font-family: sans-serif;
+    pointer-events: none;
+}
+
+/* Like button circle */
+.story-reply-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 5; /* Ensure like button is clickable above all else */
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.story-reply-icon:active {
+    outline: none;
+}
+
+/* Heart SVG */
+.story-reply-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #9ca3af;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease, fill 0.3s ease;
+}
+
+.story-reply-icon.active svg {
+    fill: #e1306c;
+    stroke: #e1306c;
+}
