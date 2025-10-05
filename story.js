@@ -7,10 +7,32 @@ let currentStoryIndex = 0;
 const STORY_DURATION = 5000; // 5 seconds per story
 
 // Access storyDataMocks globally
-const storyDataMocks = window.storyDataMocks;
-if (!storyDataMocks) {
-    console.error('storyDataMocks not found in global scope');
-}
+const storyDataMocks = window.storyDataMocks || {
+    "your-story": [
+        { id: "your-story-status-1", content: "https://picsum.photos/id/1005/360/640", time: "Just Now", reply: "", isLiked: false },
+        { id: "your-story-status-2", content: "https://picsum.photos/id/1006/360/640", time: "5 min ago", reply: "", isLiked: false }
+    ],
+    "1": [
+        { id: "emily1", content: "https://picsum.photos/id/237/360/640", time: "Just Now", reply: "", isLiked: false },
+        { id: "emily2", content: "https://picsum.photos/id/238/360/640", time: "10 min ago", reply: "", isLiked: false },
+        { id: "emily3", content: "https://picsum.photos/id/239/360/640", time: "15 min ago", reply: "", isLiked: false }
+    ],
+    "2": [
+        { id: "michael1", content: "https://picsum.photos/id/1018/360/640", time: "1 hour ago", reply: "", isLiked: false },
+        { id: "michael2", content: "https://picsum.photos/id/1019/360/640", time: "2 hours ago", reply: "", isLiked: false }
+    ],
+    "3": [
+        { id: "sarah1", content: "https://picsum.photos/id/1015/360/640", time: "2 hours ago", reply: "", isLiked: false }
+    ],
+    "4": [
+        { id: "david1", content: "https://picsum.photos/id/1016/360/640", time: "3 hours ago", reply: "", isLiked: false },
+        { id: "david2", content: "https://picsum.photos/id/1017/360/640", time: "4 hours ago", reply: "", isLiked: false }
+    ],
+    "5": [
+        { id: "jessica1", content: "https://picsum.photos/id/1019/360/640", time: "4 hours ago", reply: "", isLiked: false },
+        { id: "jessica2", content: "https://picsum.photos/id/1020/360/640", time: "5 hours ago", reply: "", isLiked: false }
+    ]
+};
 
 // --- Helper Functions ---
 
