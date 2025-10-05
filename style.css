@@ -160,36 +160,24 @@ body {
     position: relative;
 }
 
-/* Story avatar ring container - handles the gradient ring */
 .story-avatar-ring {
-    width: 68px;
-    height: 68px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     padding: 2px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-/* Your story - gray ring */
 .story-avatar-ring.your-story {
     background-color: #d1d5db;
 }
 
-/* Has story - multiple segmented rings like WhatsApp */
 .story-avatar-ring.has-story {
-    background: conic-gradient(
-        from 0deg,
-        #749cbf 0deg 85deg,
-        transparent 85deg 95deg,
-        #749cbf 95deg 175deg,
-        transparent 175deg 185deg,
-        #749cbf 185deg 265deg,
-        transparent 265deg 275deg,
-        #749cbf 275deg 360deg
-    );
+    background: #749cbf;
 }
+
+/* .story-avatar-ring.has-story {
+    background: linear-gradient(45deg, #fbbf24, #ef4444, #a855f7);
+} */
 
 .story-avatar-bg {
     width: 100%;
