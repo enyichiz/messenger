@@ -105,7 +105,7 @@ function renderStories() {
         let avatarRingClass = 'your-story';
         if (!story.isYourStory) {
             const storyCount = window.storyDataMocks[story.id]?.length || 0;
-            avatarRingClass = storyCount === 1 ? 'single-story' : 'has-story';
+            avatarRingClass = storyCount === 1 ? 'single-story' : (storyCount > 1 ? 'has-story' : 'your-story');
         }
 
         storyElement.innerHTML = `
